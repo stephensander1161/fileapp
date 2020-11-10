@@ -9,6 +9,7 @@ export default class HomeForm extends Component{
 
         this.state = {
             form: {
+                files: [],
                 to: '',
                 from: '',
                 message: ''
@@ -25,6 +26,40 @@ export default class HomeForm extends Component{
         this._onTextChange = this._onTextChange.bind(this);
         this._onSubmit = this._onSubmit.bind(this)
         this._formValidation = this._formValidation.bind(this);
+        this._onFileAdded = this._onFileAdded.bind(this);
+        this._onFileRemove = this._onFileRemove.bind(this);
+    }
+
+    _onFileRemove(key){
+        let {files} = this.state.form; 
+
+        files.splice(key, 1);
+
+        this.setState({
+            form: {
+                ...this.state.form, 
+                files: files
+            }
+        })
+
+    }
+
+    _onFileAdded(event){
+        let files = _.get(this.state, 'form.files', []);
+        
+        _.each(_.get(event, 'target.files', []), (file) => {
+            files.push(file);
+        });
+
+        console.log("files added", files);
+
+        this.setState({
+            form:{
+                ...this.state.form,
+                files: files,
+            }
+        });
+
     }
 
     _isEmail(emailAddress) {
@@ -131,16 +166,41 @@ export default class HomeForm extends Component{
     render(){
 
         const {form}= this.state;
+        const {files} = form;
         return (
             <div className={'app-card'}>
                 <form onSubmit={this._onSubmit}>
             <div className={'app-card-header'}>
                 <div className={'app-card-header-inner'}>
+
+
+
+                    {
+                        files.length ?  <div className={'app-files-selected'}>
+                            {
+                                files.map((file, index) =>{
+
+                                    return(
+                                        <div key={index} className={'app-files-selected-item'}>
+
+                                        <div className={'filename'}>{file.name}</div>
+                                        <div className={'file-action'}><button onClick={() => this._onFileRemove(index)} type={'button'} className={'app-file-remove'}>X</button></div>
+                                        </div>
+                                    )
+                                })
+                            }
+                    </div> : null
+                        
+                    }
+                    
                     <div className={'app-file-select-zone'}>
                     <label htmlFor={'input-file'}>
-                        <input id={'input-file'} type="file" multiple={true} />
-                        <span className={'app-upload-icon'}></span>
-                        <span className={'app-upload-description'}>Drag and drop your files here.</span>
+                        <input onChange={this._onFileAdded} id={'input-file'} type="file" multiple={true} />
+                        {
+                            files.length ? <span className={'app-upload-description text-uppercase'}>Add More Files</span> : <span>  <span className={'app-upload-icon'}></span>
+                            <span className={'app-upload-description'}>Drag and drop your files here.</span></span>
+                        }
+                       
                     </label>
                     </div>
                    

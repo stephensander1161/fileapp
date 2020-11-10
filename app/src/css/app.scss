@@ -27,7 +27,11 @@ body{
 .app-container{
     position: relative;
     overflow: hidden;
+    padding: 20px 0 0 0;
+
     .app-header { 
+        padding-bottom: 30px ;
+        text-align: center; 
 
         .app-site-info{
             color: #ffffff;
@@ -43,6 +47,9 @@ body{
                 font-size: 50px;
                 font-weight: 300;
                 color: rgba(255,255,255,.8);
+                @media (max-width: $screen-sm) {
+                    display: none; 
+                }
             }
             .site-slogan{
                 margin-top: 5px;
@@ -50,9 +57,13 @@ body{
                 font-size: 30px;
                 font-weight: 300;
                 color: rgba(255,255,255,.6);
+                @media (max-width: $screen-sm) {
+                    display: none; 
+                }
             }  
         } 
     }
+
 
     .app-content {
     }
@@ -60,6 +71,8 @@ body{
     @media (min-width: $screen-md ) {
         .app-header{
             float: left;
+            padding-top:100px;
+            text-align: left;
         }
         .app-content{
             float: right;
@@ -161,5 +174,38 @@ body{
         }
 
     }
+}
+.app-files-selected{
+    max-height: 150px;
+    position: relative; 
+    overflow-y: auto;
+    background: white;
+    position: relative;
+    margin: -20px -20px 20px -20px;
+    padding: 20px;
+.app-files-selected-item{
+    display: flex;
+    border-bottom: 1px solid rgba(0,0,0,0.09);
+    padding: 10px 0;
+    .filename{
+        flex-grow: 1;
+    }
+    .file-action{
+
+    }
+}
+.app-file-remove{
+    border: 0 none; 
+    padding: 3px;
+    font-size: 14px;
+    font-weight: 800;
+    background: none; 
+
+}
+}
+
+.text-uppercase{
+    text-transform: uppercase;
+
 }
 

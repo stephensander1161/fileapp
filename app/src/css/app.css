@@ -64,29 +64,41 @@ body {
 
 .app-container {
   position: relative;
-  overflow: hidden; }
-  .app-container .app-header .app-site-info {
-    color: #ffffff; }
-    .app-container .app-header .app-site-info h1 {
-      margin: 0;
-      padding: 0;
-      font-size: 60px;
-      font-weight: 800; }
-    .app-container .app-header .app-site-info .site-title {
-      margin: 20px 0 0 0;
-      padding: 0;
-      font-size: 50px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.8); }
-    .app-container .app-header .app-site-info .site-slogan {
-      margin-top: 5px;
-      padding: 0;
-      font-size: 30px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.6); }
+  overflow: hidden;
+  padding: 20px 0 0 0; }
+  .app-container .app-header {
+    padding-bottom: 30px;
+    text-align: center; }
+    .app-container .app-header .app-site-info {
+      color: #ffffff; }
+      .app-container .app-header .app-site-info h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 60px;
+        font-weight: 800; }
+      .app-container .app-header .app-site-info .site-title {
+        margin: 20px 0 0 0;
+        padding: 0;
+        font-size: 50px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8); }
+        @media (max-width: 768px) {
+          .app-container .app-header .app-site-info .site-title {
+            display: none; } }
+      .app-container .app-header .app-site-info .site-slogan {
+        margin-top: 5px;
+        padding: 0;
+        font-size: 30px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.6); }
+        @media (max-width: 768px) {
+          .app-container .app-header .app-site-info .site-slogan {
+            display: none; } }
   @media (min-width: 992px) {
     .app-container .app-header {
-      float: left; }
+      float: left;
+      padding-top: 100px;
+      text-align: left; }
     .app-container .app-content {
       float: right; } }
 
@@ -160,5 +172,29 @@ body {
   .app-form-actions .app-button.primary {
     background: #1b65f6;
     color: white; }
+
+.app-files-selected {
+  max-height: 150px;
+  position: relative;
+  overflow-y: auto;
+  background: white;
+  position: relative;
+  margin: -20px -20px 20px -20px;
+  padding: 20px; }
+  .app-files-selected .app-files-selected-item {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    padding: 10px 0; }
+    .app-files-selected .app-files-selected-item .filename {
+      flex-grow: 1; }
+  .app-files-selected .app-file-remove {
+    border: 0 none;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: 800;
+    background: none; }
+
+.text-uppercase {
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=app.css.map */
