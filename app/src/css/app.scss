@@ -1,0 +1,165 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,400,800";
+@import "reset";
+@import "variable";
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background: $primary-color; 
+    color: $body-text-color;
+    font-size: 14px;
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.app-layout{
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @media(min-width: $screen-md){
+        padding: 100px 50px 50px 50px;
+    }
+
+}
+
+.app-container{
+    position: relative;
+    overflow: hidden;
+    .app-header { 
+
+        .app-site-info{
+            color: #ffffff;
+            h1{
+                margin: 0;
+                padding: 0;
+                font-size: 60px;
+                font-weight:800;
+            }
+            .site-title{
+                margin: 20px 0 0 0;
+                padding: 0;
+                font-size: 50px;
+                font-weight: 300;
+                color: rgba(255,255,255,.8);
+            }
+            .site-slogan{
+                margin-top: 5px;
+                padding: 0;
+                font-size: 30px;
+                font-weight: 300;
+                color: rgba(255,255,255,.6);
+            }  
+        } 
+    }
+
+    .app-content {
+    }
+       
+    @media (min-width: $screen-md ) {
+        .app-header{
+            float: left;
+        }
+        .app-content{
+            float: right;
+        }
+    }
+}
+
+
+.app-card{
+    overflow: hidden;
+    position: relative;
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    @media (min-width: $screen-sm) {
+        width: 350px;
+    }
+    .app-card-header{
+        background: rgba(243,247,255,1);
+        .app-card-header-inner{
+            padding: 20px;
+        }
+    }
+    .app-card-content{
+        .app-card-content-inner{
+            padding: 20px;
+            }
+        }
+    }
+.app-file-select-zone{
+    width: 100%;
+    display: block;
+    text-align: center; 
+    label{
+        display: block; 
+        width: 100%;
+        input{
+            position: fixed; 
+            top: -99999px;
+            }
+        }
+    .app-upload-description{
+        font-size: 12px;
+        display: block;
+    }
+    .app-upload-icon{
+        display: inline-block; 
+        margin-bottom: 10px;
+        width: 70px; 
+        height: 35px; 
+        border: 1px dashed $body-text-color;
+
+    }
+
+    }
+
+    .app-form-item{
+        margin: 0 0 15px 0;
+        label{
+            text-transform: uppercase;
+            display: block;
+            font-weight: 400;
+            margin: 0 0 8px 0;
+        }
+        input[type='text'],textarea{
+            width: 100%;
+            border: 1px solid rgba(224,224,224,1);
+            outline: 0 none;
+            padding: 8px;
+            &:focus,:active{
+                outline: 0 none;
+            }
+
+        }
+        textarea{
+            min-height: 50px;
+
+        }
+    }
+.app-form-actions{
+    .app-button{
+        width: 100%;
+        text-align: center;
+        display: block;
+        font-weight: 800; 
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        background-color: white;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 3px;
+        padding: 10px 15px;
+        text-transform: uppercase;
+        &.primary{
+            background: $primary-color;
+            color: white; 
+
+        }
+
+    }
+}
+
