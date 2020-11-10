@@ -1,0 +1,7 @@
+pydude
+
+aws access keyAccess key ID
+AKIA3GX6OHSVUACE5E45
+
+Secret access key
+RAMPwCT5qu6FV+iQMboEPi9w0mlJ0nvCPzixZGGN
