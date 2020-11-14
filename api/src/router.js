@@ -2,6 +2,7 @@ import path from 'path'
 import {version} from '../package.json'
 import _ from 'lodash'
 import File from './models/file'
+import Post from './models/post'
 import {ObjectID} from 'mongodb'
 
 
@@ -54,23 +55,37 @@ class AppRouter {
                             }
                         });
                     }
+                    
+                    console.log("user request via api/upload with data", req.body, result)
+                    let post = new Post(app).initWithObject({
 
-            })
+                        from: _.get(req, 'body.from'),
+                        to: _.get(req, 'body.to'),
+                        message: _.get(req, 'body.message'),
+                        files: result.insertedIds,
+
+                    }).toJSON();
+
+                    // let save post object to posts collection
+
+                    db.collection('posts').insertOne(post, (err, result) => {
+
+                        if(err){
+                            return res.status(503).json({error: {message: "Your upload could not be saved."}});
+                        }
+                        return res.json(post);
+                    });
 
 
+                });
+
+         
             }else{
 
                 return res.status(503).json({
                     error: {message: "file upload is required"}
                 });
             }
-
-
-
-
-            return res.json({
-                files: fileModels, 
-            })
         });
 
         //Download routing 
