@@ -118,6 +118,8 @@ body {
       padding: 20px; }
   .app-card .app-card-content .app-card-content-inner {
     padding: 20px; }
+  .app-card.app-card-uploading .app-card-content .app-card-content-inner {
+    padding: 40px; }
 
 .app-file-select-zone {
   width: 100%;
@@ -203,5 +205,65 @@ body {
 
 .error {
   color: #d0152e; }
+
+.app-home-uploading-icon {
+  display: block;
+  text-align: center; }
+  .app-home-uploading-icon h2 {
+    font-size: 20px; }
+
+.app-upload-files-total {
+  margin-top: 20px; }
+
+.app-upload-stats {
+  display: flex;
+  flex-direction: row; }
+  .app-upload-stats .app-upload-stats-left {
+    flex-grow: 1; }
+
+.app-progress {
+  background: #f1f8fe;
+  border: 1px solid #b2d8f8;
+  height: 15px;
+  line-height: 15px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 10px 0 10px 0;
+  position: relative;
+  overflow: hidden; }
+  .app-progress .app-progress-bar {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    height: 15px;
+    line-height: 15px;
+    background: #1b65f6; }
+
+.app-upload-cancel-button {
+  margin-top: 50px; }
+
+.app-home-upload-sent-icon {
+  display: block;
+  text-align: center; }
+
+.app-text-center {
+  text-align: center; }
+
+.app-upload-sent-message {
+  margin-top: 50px; }
+  .app-upload-sent-message h2 {
+    font-size: 25px;
+    font-weight: 400;
+    padding: 0;
+    margin: 20px 0; }
+  .app-upload-sent-message p {
+    line-height: 1.5em;
+    padding-bottom: 10px; }
+
+.app-upload-sent-actions {
+  margin: 20px 0; }
+  .app-upload-sent-actions button {
+    margin: 10px 0; }
 
 /*# sourceMappingURL=app.css.map */

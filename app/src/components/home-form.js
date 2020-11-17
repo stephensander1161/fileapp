@@ -2,9 +2,10 @@ import React,{Component} from 'react'
 import _ from 'lodash'
 import classNames from 'classnames';
 import {upload} from '../helpers/upload';
+import PropTypes from 'prop-types';
 
 
-export default class HomeForm extends Component{
+class HomeForm extends Component{
 
     constructor(props){
         super(props);
@@ -168,10 +169,18 @@ export default class HomeForm extends Component{
             if(isValid){
                 //form is valid and ready to submit
 
-                upload(this.state.form, (event) => {
+                const data = this.state.form;
 
-                    console.log("upload callback of event", event);
+                if(this.props.onUploadBegin){
 
+                    this.props.onUploadBegin(data);
+
+                }
+                upload(data, (event) => {
+
+                    if(this.props.onUploadEvent){
+                        this.props.onUploadEvent(event);
+                    }
                 })
             }
         });
@@ -242,13 +251,13 @@ export default class HomeForm extends Component{
 
                 <div className={classNames('app-form-item', {'error': _.get(errors, 'from')})}>
                     <label htmlFor={'from'}>From</label>
-                    <input  onChange={this._onTextChange} name={'from'} placeholder={_.get(errors, 'from') ? _.get(errors, 'from'): 'Your email address'} 
+                    <input value={_.get(form, 'from')}  onChange={this._onTextChange} name={'from'} placeholder={_.get(errors, 'from') ? _.get(errors, 'from'): 'Your email address'} 
                     type={'text'} id={'from'}/>
                 </div>
 
                 <div className={'app-form-item'}>
                     <label htmlFor={'to'}>Message</label>
-                    <textarea  onChange={this._onTextChange} placeholder={'Add a note (optional)'} id={'message'} name={'message'} />                   
+                    <textarea value={_.get(form, 'message', '')}  onChange={this._onTextChange} placeholder={'Add a note (optional)'} id={'message'} name={'message'} />                   
                 </div>
 
                 <div className={'app-form-actions'}>
@@ -264,3 +273,12 @@ export default class HomeForm extends Component{
         )
     }
 }
+
+HomeForm.propType = {
+    onUploadBegin: PropTypes.func,
+    onUploadEvent: PropTypes.func
+
+
+
+};
+export default HomeForm;

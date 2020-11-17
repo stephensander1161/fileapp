@@ -126,6 +126,24 @@ class AppRouter {
 
         });
 
+        //routing for post detail /api/posts/:id
+
+        app.get('/api/posts/:id',(req, res, next) => {
+
+            const postId = _.get(req, 'params.id');
+            let postObjectId = null;
+
+            try{
+                postObjectId = new ObjectID(postId);
+
+            }
+            catch (err){
+
+                return res.status(404).json({error: {message: 'File not found.'}});
+
+            }
+        });
+
 
 
 

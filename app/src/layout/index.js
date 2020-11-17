@@ -1,5 +1,10 @@
 import React,{Component} from 'react'
 import Home from '../pages/home'
+import {Router,Route, Switch} from 'react-router-dom'
+import View from '../pages/view'
+
+import {history} from "../history";
+
 class Layout extends Component{
 
     constructor(props){
@@ -10,7 +15,14 @@ class Layout extends Component{
 
         return (
             <div className={'app-layout'}>
-                <Home/>
+                <Router history={history}>
+                    <Switch>
+                        <Route exact path={'/'} component={Home} />
+                        <Route exact path={'/share/:id'} component={View} />
+
+                    </Switch>
+
+                </Router>
                 
 
             </div>
