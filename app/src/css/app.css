@@ -52,6 +52,10 @@ body {
   color: #96a3bb;
   font-size: 14px; }
 
+a {
+  color: #1b65f6;
+  text-decoration: none; }
+
 * {
   box-sizing: border-box; }
 
@@ -265,5 +269,72 @@ body {
   margin: 20px 0; }
   .app-upload-sent-actions button {
     margin: 10px 0; }
+
+.app-page-download .app-card {
+  margin: 0 auto; }
+  @media (min-width: 768px) {
+    .app-page-download .app-card {
+      width: 400px; } }
+
+.app-top-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px; }
+  .app-top-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 60px;
+    font-weight: 500; }
+
+.app-download-icon {
+  font-size: 28px;
+  text-align: center; }
+
+.app-download-message {
+  margin-top: 30px; }
+  .app-download-message h2 {
+    font-size: 25px;
+    margin: 20px 0; }
+  .app-download-message ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .app-download-message ul li {
+      padding: 0 0 0 30px;
+      margin: 0 10px 0 0;
+      display: inline-block;
+      position: relative; }
+      .app-download-message ul li:before {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        display: block;
+        content: '';
+        width: 4px;
+        height: 4px;
+        background: #96a3bb;
+        border-radius: 50%; }
+      .app-download-message ul li:first-child {
+        padding: 0; }
+        .app-download-message ul li:first-child:before {
+          display: none; }
+
+.app-download-file-list {
+  margin: 30px 0; }
+  .app-download-file-list .app-download-file-list-item {
+    border-bottom: 1px solid #e3eaf8;
+    padding: 10px 5px;
+    display: flex; }
+    .app-download-file-list .app-download-file-list-item .filename {
+      flex-grow: 1; }
+    .app-download-file-list .app-download-file-list-item .download-action a {
+      color: #1b65f6;
+      text-decoration: none; }
+
+.app-download-actions button {
+  margin-top: 20px 0; }
+
+.app-top-header h1 {
+  cursor: pointer; }
 
 /*# sourceMappingURL=app.css.map */
