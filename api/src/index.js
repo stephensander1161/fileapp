@@ -5,10 +5,14 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import path from 'path';
-
+import nodemailer from 'nodemailer';
 import {connect} from "./database";
 import AppRouter from './router';
+import {smtp} from './config';
 
+
+//setup email
+let email = nodemailer.createTransport(smtp);
 
 //File storage config
 const storageDir = path.join(__dirname, '..', 'storage');
@@ -43,6 +47,7 @@ app.use(bodyParser.json({
 app.set('root', __dirname);
 app.set('storageDir', storageDir);
 app.set('upload', upload);
+app.email = email;
 
 
 
