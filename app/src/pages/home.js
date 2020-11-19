@@ -29,7 +29,16 @@ import _ from 'lodash';
 
             case 'HomeUploading':
 
-            return <HomeUploading event={uploadEvent}  data={data}/>
+            return <HomeUploading onCancel={() => {
+
+                this.setState({
+                    uploadEvent: null, 
+                    data: null, 
+                    componentName: 'HomeForm'
+
+                })
+
+            }} event={uploadEvent}  data={data}/>
 
             case 'HomeUploadSent':
 

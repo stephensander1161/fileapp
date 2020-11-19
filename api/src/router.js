@@ -6,6 +6,7 @@ import Post from './models/post'
 import {ObjectID} from 'mongodb'
 import FileArchiver from './archiver'
 import Email from './email'
+import S3 from './s3'
 
 
 class AppRouter {
@@ -20,7 +21,7 @@ class AppRouter {
         const app = this.app;
         const db = app.get('db');
          const uploadDir = app.get('storageDir');
-         const upload = app.get('upload'); 
+         const upload = app.upload;
        
          //route routing.
         app.get('/', (req, res, next) =>{
@@ -38,6 +39,7 @@ class AppRouter {
         app.post('/api/upload', upload.array('files'), (req, res, next) => {
             const files = _.get(req, 'files', []);
             
+            console.log("files objects from s3 multer", files);
             let fileModels = [];
 
 
@@ -58,7 +60,6 @@ class AppRouter {
                         });
                     }
                     
-                    console.log("user request via api/upload with data", req.body, result)
                     let post = new Post(app).initWithObject({
 
                         from: _.get(req, 'body.from'),
@@ -78,15 +79,19 @@ class AppRouter {
                         // implement email sending to userwith download link.
 
                         // send email
-                        const sendEmail = new Email(app);
+                        const sendEmail = new Email(app).sendDownloadLink(post, (err, info) => {
 
-                        sendEmail.sendDownloadLink(post, (err, info) => {
+                            sendEmail.sendDownloadLink(post, (err, info) => {
 
-                            if(err){
-                                console.log("error sending meail notify downloading link", err);
-                            }
+                                if(err){
+                                    console.log("error sending meail notify downloading link", err);
+                                }
+    
+                            });
 
-                        })
+                        });
+
+                       
 
                         //callback to react app with post details.
                         return res.json(post);
@@ -123,8 +128,22 @@ class AppRouter {
                     })
                 }
 
+                // download file from s3 service
+                const file = _.get(result, '[0]');
+                const downloader = new S3(app, res);
 
-                const filePath = path.join(uploadDir, fileName);
+                //return downloader.download(file); Proxy download from s3 service
+
+                //Download Directly from S3
+
+                const downloadUrl = downloader.getDownloadUrl(file);
+
+                return res.redirect(downloadUrl);
+
+
+
+
+                /*const filePath = path.join(uploadDir, fileName);
                 return res.download(filePath, _.get(result, '[0].originalName'), (err) => {
                     if(err){
                         return res.status(404).json({
@@ -135,7 +154,7 @@ class AppRouter {
                     }else{
                         console.log("file downloaded");
                     }
-                });
+                });*/
 
             });
 

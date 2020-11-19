@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import {url} from "./config"
 
-export class Email {
+export default class Email {
     constructor(app){
-        this.app = app;
+        this.app = app; 
     }
 
      sendDownloadLink(post, callback = () => {}){
@@ -22,18 +22,15 @@ export class Email {
             to: to, // list of receivers
             subject: '[Share] Download Invitation', // Subject line
             text: message, // plain text body
-            html: `<p>${from} has sent you a file. Click <a href="${downloadLink}">here</a> to download.</p>`, // html body
+            html: `<p>${from} has sent you a file. Click <a href="${downloadLink}">here</a> to download.</p><p>Message: ${message}</p>` // html body
         };
 
-        email.sendMail(messageOptions, (error, info) => {
+        email.sendMail(messageOptions, (err, info) => {
+            console.log("sending an email with callback", err, info);
 
-            return callback(error, info);
+            return callback(err, info);
 
             
         })
-
-
-
-
     }
 }

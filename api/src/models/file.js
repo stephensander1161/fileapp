@@ -15,10 +15,11 @@ class File {
     }
 
     initWithObject(object){
-        this.model.name = _.get(object, 'filename');
+        this.model.name = _.get(object, 'key');
         this.model.originalName = _.get(object, 'originalname');
         this.model.mimeType = _.get(object, 'mimetype');
         this.model.size = _.get(object, 'size');
+        this.model.etag = _.get(object, 'etag');
         this.model.created = Date.now();
 
         return this;
